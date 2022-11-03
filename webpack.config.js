@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: {
     scripts: './scripts.js',
-    react_with_dom: './vendors/react-with-dom.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -44,7 +43,7 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        test: /\.(png|svg|jpg|gif|woff(2)?|webp|eot|ttf|otf)$/,
         type: 'asset/resource'
       },
       {
