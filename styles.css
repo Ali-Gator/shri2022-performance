@@ -86,7 +86,6 @@ html, body {
 @media (max-width: 768px) {
     .header__links {
         display: none;
-
         position: absolute;
         z-index: 1;
         top: 100%;
