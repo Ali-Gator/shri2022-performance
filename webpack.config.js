@@ -3,13 +3,40 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
-  entry: {main: './scripts.js'},
+  entry: {
+    scripts: './scripts.js',
+    react_with_dom: './vendors/react-with-dom.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: '[name].[contenthash].js',
     publicPath: ''
   },
-  mode: 'production',
+  mode: 'development',
+  devServer: {
+    static: path.resolve(__dirname, './dist'),
+    compress: true,
+    port: 8080,
+    open: true,
+    watchFiles: ['**/*']
+  },
+  optimization: {
+    minimize: true,
+    moduleIds: 'deterministic',
+    innerGraph: true,
+    concatenateModules: true,
+    mergeDuplicateChunks: true,
+    removeAvailableModules: true,
+    removeEmptyChunks: true,
+    runtimeChunk: {
+      name: 'runtime'
+    },
+    splitChunks: {
+      minChunks: 2,
+      chunks: 'all',
+      minSize: 1,
+    },
+  },
   module: {
     rules: [
       {
